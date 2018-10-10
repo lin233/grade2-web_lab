@@ -154,8 +154,8 @@ class ControlledTabs extends React.Component {
                                 <th>Name</th>
                                 <th>Author</th>
                                 <th>Language</th>
-                                <th>Published</th>
-                                <th onClick={this.props.sort}>Sales</th>
+                                <th onClick={this.props.sort}>Published</th>
+                                <th>Sales</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -203,7 +203,7 @@ class MainTable extends React.Component{
 
             //loop1++;
             temp.map((item,i)=>{
-                    if(item.Sales<=currentBook.Sales){
+                    if(item.Published<=currentBook.Published){
                         currentBook=item;
                         currentkey=i;
                     }
@@ -259,12 +259,14 @@ class MainTable extends React.Component{
 
         this.setState({
             sortbook:sortTemp,
-            IfSort:!this.state.IfSort
+            IfSort:!this.state.IfSort,
+            choose:3
         });
 
     }
 
     addBook(){
+        this.handlerReturn();
         let temp=this.state.book;
         temp.push({
             "Name": "b",
@@ -434,7 +436,12 @@ class Mainbook extends Component    {
 //export default ControlledTabs;
 export default MainTable;
 
-/* <Col>
+/*
+    {this.state.IfSort?element=<div> <ControlledTabs book={this.state.sortbook}add={this.addBook}sort={this.Downsort}/></div>
+                :element=<div><ControlledTabs book={this.state.sortbook}add={this.addBook}sort={this.Upsort}/></div>}
+
+
+    <Col>
         {this.state.IfSort?<div> <ControlledTabs book={this.state.sortbook}sort={this.Upsort}/></div>
             :<div><ControlledTabs book={this.state.book} add={this.addBook}sort={this.Upsort}/></div>
         }
